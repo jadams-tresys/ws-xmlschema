@@ -1115,6 +1115,7 @@ public class SchemaBuilder {
                 choice.setAnnotation(annotation);
             }
         }
+        processExtensibilityComponents(choice, choiceEl, true);
         return choice;
     }
 
@@ -1369,6 +1370,9 @@ public class SchemaBuilder {
             group.setAnnotation(annotation);
         }
 
+        // process extra attributes and elements here on the groupRef instead of the referred group
+        processExtensibilityComponents(group, groupEl, true);
+
         if (groupEl.hasAttribute("ref")) {
             String ref = groupEl.getAttribute("ref");
             group.setRefName(getRefQName(ref, groupEl));
@@ -1570,6 +1574,8 @@ public class SchemaBuilder {
                 sequence.setAnnotation(annotation);
             }
         }
+        // process extra attributes and elements
+        processExtensibilityComponents(sequence, sequenceEl, true);
         return sequence;
     }
 
